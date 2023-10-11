@@ -37,7 +37,6 @@ namespace TPWeb_Carrrito
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo agregado = listadoArticulos.Find(x => x.Id == id);
             Session.Add("agregado", agregado);
-            Response.Redirect("Carrito.aspx", false);
         }
     }
 }
