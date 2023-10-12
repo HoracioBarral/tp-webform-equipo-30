@@ -15,6 +15,33 @@ namespace TPWeb_Carrrito
     {
 
         /// <summary>
+        /// Control LblVacio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblVacio;
+
+        /// <summary>
+        /// Control btncarrito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btncarrito;
+
+        /// <summary>
+        /// Control TxtBoxCantidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtBoxCantidad;
+
+        /// <summary>
         /// Control repeaterProductos.
         /// </summary>
         /// <remarks>

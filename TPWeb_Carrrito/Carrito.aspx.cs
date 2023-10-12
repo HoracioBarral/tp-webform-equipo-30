@@ -14,9 +14,12 @@ namespace TPWeb_Carrrito
         public List<Articulo> art;
         protected void Page_Load(object sender, EventArgs e)
         {
-            art = (List<Articulo>)Page.Session["artAgregados"];
-            repeaterCarrito.DataSource = art;
-            repeaterCarrito.DataBind();
+            if (!IsPostBack)
+            {
+                art = (List<Articulo>)Page.Session["artAgregados"];
+                repeaterCarrito.DataSource = art;
+                repeaterCarrito.DataBind();
+            }
         }
 
 
@@ -24,5 +27,6 @@ namespace TPWeb_Carrrito
         {
 
         }
+
     }
 }

@@ -45,5 +45,10 @@ namespace TPWeb_Carrrito
             artAgregados.Add(agregado);
             Page.Session.Add("artAgregados", artAgregados);
         }
+
+        protected void btncarrito_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Carrito.aspx", false);
+        }
     }
 }
