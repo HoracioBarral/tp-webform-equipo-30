@@ -40,10 +40,7 @@ namespace TPWeb_Carrrito
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo agregado = new Articulo();
             agregado = listadoArticulos.Find(x => x.Id == id);
-            artAgregados = (List<Articulo>)Page.Session["artAgregados"];
-            Page.Session.Remove("artAgregados");
-            artAgregados.Add(agregado);
-            Page.Session.Add("artAgregados", artAgregados);
+            ((List<Articulo>)Page.Session["artAgregados"]).Add(agregado);
         }
 
         protected void btncarrito_Click(object sender, ImageClickEventArgs e)
