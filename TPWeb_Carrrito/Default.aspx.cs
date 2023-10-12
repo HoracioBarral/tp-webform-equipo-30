@@ -31,6 +31,15 @@ namespace TPWeb_Carrrito
             int id = int.Parse(((Button)sender).CommandArgument);
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             Articulo seleccionado = listadoArticulos.Find(x => x.Id == id);
+            if (Session["Seleccionado"] != null)
+            {
+                Session.Remove("Seleccionado");
+                Session.Add("Seleccionado", seleccionado);
+            }
+            else
+            {
+                Session.Add("Seleccionado", seleccionado);
+            }
             Response.Redirect("Detalles.aspx",false);
         }
 
