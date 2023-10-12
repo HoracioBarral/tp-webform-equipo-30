@@ -2,6 +2,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="car bg-dark text-white">
+        <div class="row">
+            <div class="col" style="text-align: center; font: bold 20px verdana;">
+                <dl>
+                    <dt class="col-sm-6">Carrito de Compras</dt>
+                </dl>
+            </div>
+            <div class="col" style="text-align: right; position: center">
+                <asp:Button ID="btnVolver" Text="Volver" runat="server" OnClick="btnVolver_Click" CssClass="btn btn-danger" BorderColor="Black" Width="160" Height="40" />
+            </div>
+        </div>
+    </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <asp:Repeater ID="repeaterCarrito" runat="server">
             <ItemTemplate>

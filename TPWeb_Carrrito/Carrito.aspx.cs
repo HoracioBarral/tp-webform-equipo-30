@@ -11,13 +11,11 @@ namespace TPWeb_Carrrito
 {
     public partial class Carrito : System.Web.UI.Page
     {
-        public List<Articulo> art;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                art = (List<Articulo>)Page.Session["artAgregados"];
-                repeaterCarrito.DataSource = art;
+                repeaterCarrito.DataSource = (List<Articulo>)Session["artAgregados"];
                 repeaterCarrito.DataBind();
             }
         }
@@ -28,5 +26,9 @@ namespace TPWeb_Carrrito
 
         }
 
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }

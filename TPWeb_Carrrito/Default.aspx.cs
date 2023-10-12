@@ -13,17 +13,15 @@ namespace TPWeb_Carrrito
 {
     public partial class Default : System.Web.UI.Page
     {
-        public List<Articulo> listadoArticulos;
-        public List<Articulo> artAgregados;
+        public List<Articulo> listadoArticulos { get; set; }
+        public List<Articulo> artAgregados { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio articulos = new ArticuloNegocio();
-            listadoArticulos = articulos.listar();
             if (!IsPostBack)
             {
-                artAgregados = new List<Articulo>();
-                Session.Add("artAgregados", artAgregados);
-                repeaterProductos.DataSource = listadoArticulos;
+                ArticuloNegocio articulos = new ArticuloNegocio();
+                Session.Add("listadoArticulos", articulos.listar());
+                repeaterProductos.DataSource = articulos.listar();
                 repeaterProductos.DataBind();
             }
         }
@@ -31,6 +29,7 @@ namespace TPWeb_Carrrito
         protected void VerDetalles_Click(object sender, EventArgs e)
         {
             int id = int.Parse(((Button)sender).CommandArgument);
+            listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             Articulo seleccionado = listadoArticulos.Find(x => x.Id == id);
             Response.Redirect("Detalles.aspx",false);
         }
@@ -39,13 +38,25 @@ namespace TPWeb_Carrrito
         {
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo agregado = new Articulo();
+            listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.Id == id);
-            ((List<Articulo>)Page.Session["artAgregados"]).Add(agregado);
+            
+            if(artAgregados == null)
+            {
+                artAgregados = new List<Articulo>();
+                
+            }
+            if (Session["artAgregados"] != null) {
+                artAgregados = (List<Articulo>)Session["artAgregados"];
+                Session.Remove("artAgregados");
+            }
+            artAgregados.Add(agregado);
+            Session.Add("artAgregados", artAgregados);
         }
 
         protected void btncarrito_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("Carrito.aspx", false);
+            Response.Redirect("Carrito.aspx",false);
         }
     }
 }
