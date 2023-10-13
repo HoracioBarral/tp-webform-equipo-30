@@ -13,8 +13,8 @@ namespace TPWeb_Carrrito
 {
     public partial class Default : System.Web.UI.Page
     {
-        public List<Articulo> listadoArticulos { get; set; }
-        public List<Articulo> artAgregados { get; set; }
+        List<Articulo> listadoArticulos;
+        //List<Articulo> artAgregados;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,7 +26,7 @@ namespace TPWeb_Carrrito
              }
             if (Session["artAgregados"] == null)
             {
-                artAgregados = new List<Articulo>();
+                List<Articulo> artAgregados = new List<Articulo>();
                 Session.Add("artAgregados", artAgregados);
             }
         }
@@ -36,7 +36,7 @@ namespace TPWeb_Carrrito
             int id = int.Parse(((Button)sender).CommandArgument);
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             Articulo seleccionado = listadoArticulos.Find(x => x.Id == id);
-            if (Session["Seleccionado"] != null)
+            /*if (Session["Seleccionado"] != null)
             {
                 Session.Remove("Seleccionado");
                 Session.Add("Seleccionado", seleccionado);
@@ -44,7 +44,8 @@ namespace TPWeb_Carrrito
             else
             {
                 Session.Add("Seleccionado", seleccionado);
-            }
+            }*/
+            Session.Add("Seleccionado", seleccionado);
             Response.Redirect("Detalles.aspx",false);
         }
 
@@ -54,16 +55,16 @@ namespace TPWeb_Carrrito
             Articulo agregado = new Articulo();
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.Id == id);
-            if(artAgregados == null)
+            /*if(artAgregados == null)
             {
                 //artAgregados = new List<Articulo>();
             }
-            /*if (Session["artAgregados"] != null) {
+            if (Session["artAgregados"] != null) {
                 artAgregados = (List<Articulo>)Session["artAgregados"];
                 Session.Remove("artAgregados");
             }*/
-            List<Articulo> lista = (List<Articulo>)Session["artAgregados"];
-            lista.Add(agregado);
+            List<Articulo> artAgregados = (List<Articulo>)Session["artAgregados"];
+            artAgregados.Add(agregado);
             //artAgregados.Add(agregado);
             //Session.Add("artAgregados", artAgregados);
         }

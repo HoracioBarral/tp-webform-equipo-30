@@ -17,6 +17,7 @@
             </div>
         </div>
     </div>
+    <hr />
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <asp:Repeater ID="repeaterProductos" runat="server">
             <ItemTemplate>

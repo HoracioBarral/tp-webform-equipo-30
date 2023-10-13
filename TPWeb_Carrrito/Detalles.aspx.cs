@@ -19,5 +19,10 @@ namespace TPWeb_Carrrito
             repeaterImagenes.DataSource = artDetalles.UrlImagen;
             repeaterImagenes.DataBind();
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }
