@@ -18,11 +18,16 @@ namespace TPWeb_Carrrito
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+             {
+                 ArticuloNegocio articulos = new ArticuloNegocio();
+                 Session.Add("listadoArticulos", articulos.listar());
+                 repeaterProductos.DataSource = articulos.listar();
+                 repeaterProductos.DataBind();
+             }
+            if (Session["artAgregados"] == null)
             {
-                ArticuloNegocio articulos = new ArticuloNegocio();
-                Session.Add("listadoArticulos", articulos.listar());
-                repeaterProductos.DataSource = articulos.listar();
-                repeaterProductos.DataBind();
+                artAgregados = new List<Articulo>();
+                Session.Add("artAgregados", artAgregados);
             }
         }
 
@@ -49,18 +54,18 @@ namespace TPWeb_Carrrito
             Articulo agregado = new Articulo();
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.Id == id);
-            
             if(artAgregados == null)
             {
-                artAgregados = new List<Articulo>();
-                
+                //artAgregados = new List<Articulo>();
             }
-            if (Session["artAgregados"] != null) {
+            /*if (Session["artAgregados"] != null) {
                 artAgregados = (List<Articulo>)Session["artAgregados"];
                 Session.Remove("artAgregados");
-            }
-            artAgregados.Add(agregado);
-            Session.Add("artAgregados", artAgregados);
+            }*/
+            List<Articulo> lista = (List<Articulo>)Session["artAgregados"];
+            lista.Add(agregado);
+            //artAgregados.Add(agregado);
+            //Session.Add("artAgregados", artAgregados);
         }
 
         protected void btncarrito_Click(object sender, ImageClickEventArgs e)
