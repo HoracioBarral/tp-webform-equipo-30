@@ -13,6 +13,7 @@ namespace TPWeb_Carrrito
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            calcularImporte();
             List<Articulo> carrito;
             if (Session["artAgregados"] == null)
             {
@@ -36,6 +37,7 @@ namespace TPWeb_Carrrito
             List<Articulo> listadoArticulos = (List<Articulo>)Session["artAgregados"];
             Articulo artEliminado = listadoArticulos.Find(x => x.Id == id);
             listadoArticulos.Remove(artEliminado);
+            calcularImporte();
             repeaterCarrito.DataSource = Session["artAgregados"];
             repeaterCarrito.DataBind();
         }
@@ -43,6 +45,20 @@ namespace TPWeb_Carrrito
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx", false);
+        }
+
+        private void calcularImporte()
+        {
+            decimal importeTotal=0;
+            if (Session["artAgregados"] != null)
+            {
+                List<Articulo> importes = (List<Articulo>)Session["artAgregados"];
+                foreach (Articulo art in importes)
+                {
+                    importeTotal += art.Precio;
+                }
+            }
+            lblImporte.Text = importeTotal.ToString();
         }
     }
 }
