@@ -24,6 +24,15 @@ namespace TPWeb_Carrrito
         protected global::System.Web.UI.WebControls.Button btnVolver;
 
         /// <summary>
+        /// Control imgMostrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgMostrar;
+
+        /// <summary>
         /// Control repeaterCarrito.
         /// </summary>
         /// <remarks>

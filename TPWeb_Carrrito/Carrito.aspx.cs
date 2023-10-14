@@ -11,13 +11,20 @@ namespace TPWeb_Carrrito
 {
     public partial class Carrito : System.Web.UI.Page
     {
-        List<Articulo> artAgregados;
         protected void Page_Load(object sender, EventArgs e)
         {
-            artAgregados = (List<Articulo>)Session["artAgregados"];
+            List<Articulo> carrito;
+            if (Session["artAgregados"] == null)
+            {
+                carrito = new List<Articulo>();
+                Session.Add("carrito", carrito);
+                return;
+            }
+            carrito = (List<Articulo>)Session["artAgregados"];
+            Session.Add("carrito", carrito);
             if (!IsPostBack)
             {
-                repeaterCarrito.DataSource = artAgregados;
+                repeaterCarrito.DataSource = Session["artAgregados"];
                 repeaterCarrito.DataBind();
             }
         }
@@ -26,10 +33,10 @@ namespace TPWeb_Carrrito
         protected void Eliminar_Click(object sender, EventArgs e)
         {
             int id = int.Parse(((Button)sender).CommandArgument);
-            List<Articulo>listadoArticulos = (List<Articulo>)Session["artAgregados"];
+            List<Articulo> listadoArticulos = (List<Articulo>)Session["artAgregados"];
             Articulo artEliminado = listadoArticulos.Find(x => x.Id == id);
-            artAgregados.Remove(artEliminado);
-            repeaterCarrito.DataSource = artAgregados;
+            listadoArticulos.Remove(artEliminado);
+            repeaterCarrito.DataSource = Session["artAgregados"];
             repeaterCarrito.DataBind();
         }
 

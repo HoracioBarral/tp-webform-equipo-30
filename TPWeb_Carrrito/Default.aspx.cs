@@ -18,16 +18,11 @@ namespace TPWeb_Carrrito
         {
             if (!IsPostBack)
              {
-                 ArticuloNegocio articulos = new ArticuloNegocio();
-                 Session.Add("listadoArticulos", articulos.listar());
-                 repeaterProductos.DataSource = articulos.listar();
-                 repeaterProductos.DataBind();
+                ArticuloNegocio articulos = new ArticuloNegocio();
+                Session.Add("listadoArticulos", articulos.listar());
+                repeaterProductos.DataSource = articulos.listar();
+                repeaterProductos.DataBind();
              }
-            if (Session["artAgregados"] == null)
-            {
-                List<Articulo> artAgregados = new List<Articulo>();
-                Session.Add("artAgregados", artAgregados);
-            }
         }
 
         protected void VerDetalles_Click(object sender, EventArgs e)
@@ -41,12 +36,17 @@ namespace TPWeb_Carrrito
 
         protected void Agregar_Click(object sender, EventArgs e)
         {
+            List<Articulo> artAgregados;
+            if (Session["artAgregados"] == null)
+            {
+                artAgregados= new List<Articulo>();
+                Session.Add("artAgregados", artAgregados);
+            }
             int id = int.Parse(((Button)sender).CommandArgument);
             Articulo agregado = new Articulo();
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.Id == id);
-            List<Articulo> artAgregados = (List<Articulo>)Session["artAgregados"];
-            artAgregados.Add(agregado);
+            ((List<Articulo>)Session["artAgregados"]).Add(agregado);
         }
 
         protected void btncarrito_Click(object sender, ImageClickEventArgs e)

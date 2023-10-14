@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="TPWeb_Carrrito.Carrito" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -15,11 +16,14 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% if (((List<dominio.Articulo>)(Session["carrito"])).Count==0 ) { %>
+            <asp:Image ID="imgMostrar" runat="server" ImageUrl="Imagen/carritoVacio.png" AlternateText="Carrito Vacio" />
+            <% } else { %>
         <asp:Repeater ID="repeaterCarrito" runat="server">
             <ItemTemplate>
                 <div class="col">
                     <div class="card">
-                       <img src="<%#Eval("UrlImagen[0].Url") %>" onerror="this.src='Imagen/error.png';" class="card-img-top" alt="...">
+                        <img src="<%#Eval("UrlImagen[0].Url") %>" onerror="this.src='Imagen/error.png';" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
                             <p class="card-text"><%#Eval("Descripcion") %></p>
@@ -29,5 +33,6 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+         <% } %>
     </div>
 </asp:Content>
