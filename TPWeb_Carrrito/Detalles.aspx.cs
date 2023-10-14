@@ -15,6 +15,8 @@ namespace TPWeb_Carrrito
             if (Session["Seleccionado"] == null) return;
             Articulo artDetalles = new Articulo();
             artDetalles = (Articulo)Session["Seleccionado"];
+            txtDescripcion.Text=artDetalles.Descripcion;
+            txtMarca.Text = artDetalles.NombreMarca.Descripcion;
             repeaterImagenes.DataSource = artDetalles.UrlImagen;
             repeaterImagenes.DataBind();
         }

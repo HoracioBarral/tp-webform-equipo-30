@@ -9,11 +9,17 @@
                 <dl>
                     <dt class="col-sm-6">Detalle de Producto</dt>
                 </dl>
+                <div class="col" style="text-align: right; position: center">
+                    <asp:Button ID="Button1" Text="Volver" runat="server" OnClick="btnVolver_Click" CssClass="btn btn-danger" BorderColor="Black" Width="160" Height="40" />
+                </div>
             </div>
         </div>
     </div>
-    <div class="col" style="text-align: right; position: center">
-        <asp:Button ID="btnVolver" Text="Volver" runat="server" OnClick="btnVolver_Click" CssClass="btn btn-danger" BorderColor="Black" Width="160" Height="40" />
+    <div id="divDescripcion">
+        <asp:TextBox runat="server" ID="txtDescripcion" />
+    </div>
+    <div id="divMarca">
+        <asp:TextBox runat="server" ID="txtMarca" />
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <asp:Repeater ID="repeaterImagenes" runat="server">
