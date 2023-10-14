@@ -10,6 +10,10 @@
                     <dt class="col-sm-6">Catalogo de Productos</dt>
                 </dl>
             </div>
+            <div class="col" style="text-align: center">
+                <asp:TextBox ID="TxtFiltro" runat="server"></asp:TextBox>
+                <asp:Button ID="BtnFiltro" runat="server" OnClick="BtnFiltro_Click" CssClass="btn btn-info" Text="Buscar" />
+            </div>
             <div class="col" style="text-align: right; position: center">
                 <asp:Label ID="LblVacio" runat="server" Text=""></asp:Label>
                 <asp:ImageButton ID="btncarrito" Text="Carrito" runat="server" Onclick="btncarrito_Click" CssClass="btn btn-danger" BorderColor="Black" ImageUrl="https://cdn-icons-png.flaticon.com/512/107/107831.png?w=740&t=st=1665782017~exp=1665782617~hmac=95808e2329e630a6ba9074a08d0e67d284da4975037a7d5e51dd48611f5c47fa" Width="45" Height="35" />

@@ -65,5 +65,10 @@ namespace TPWeb_Carrrito
             }
             TxtBoxCantidad.Text = cant.ToString();
         }
+
+        protected void BtnFiltro_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
