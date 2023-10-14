@@ -42,6 +42,8 @@
         <div class="form-floating">
             <asp:Label ID="lblTotal" runat="server" CssClass="display-6">Total: $</asp:Label>
             <asp:Label ID="lblImporte" runat="server" CssClass="display-6"></asp:Label>
+            <br />
+            <asp:Label ID="lblCantidadProductos" runat="server"></asp:Label>
         </div>
     </div>
 </asp:Content>

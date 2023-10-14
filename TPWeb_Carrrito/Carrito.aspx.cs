@@ -50,15 +50,19 @@ namespace TPWeb_Carrrito
         private void calcularImporte()
         {
             decimal importeTotal=0;
+            int cantidadProductos=0;
+
             if (Session["artAgregados"] != null)
             {
                 List<Articulo> importes = (List<Articulo>)Session["artAgregados"];
                 foreach (Articulo art in importes)
                 {
                     importeTotal += art.Precio;
+                    cantidadProductos++;
                 }
             }
             lblImporte.Text = importeTotal.ToString();
+            lblCantidadProductos.Text = "Cantidad de Productos: " + cantidadProductos.ToString();
         }
     }
 }
