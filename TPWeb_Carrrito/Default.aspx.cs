@@ -68,7 +68,20 @@ namespace TPWeb_Carrrito
 
         protected void BtnFiltro_Click(object sender, EventArgs e)
         {
+            //string filtro = TxtFiltro.Text.Trim().ToUpper();
+            //List<Articulo> listadoActual = (List<Articulo>)Session["listadoArticulos"];
 
+            //List<Articulo> productosFiltrados = new List<Articulo>();
+
+            //foreach (var articulo in listadoActual)
+            //{
+            //    if (articulo.Descripcion.ToUpper().Contains(filtro))
+            //    {
+            //        productosFiltrados.Add(articulo);
+            //    }
+            //}
+            //repeaterProductos.DataSource = productosFiltrados;
+            //repeaterProductos.DataBind();
         }
     }
 }
