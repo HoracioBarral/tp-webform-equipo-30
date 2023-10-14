@@ -14,7 +14,6 @@ namespace TPWeb_Carrrito
     public partial class Default : System.Web.UI.Page
     {
         List<Articulo> listadoArticulos;
-        //List<Articulo> artAgregados;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,15 +35,6 @@ namespace TPWeb_Carrrito
             int id = int.Parse(((Button)sender).CommandArgument);
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             Articulo seleccionado = listadoArticulos.Find(x => x.Id == id);
-            /*if (Session["Seleccionado"] != null)
-            {
-                Session.Remove("Seleccionado");
-                Session.Add("Seleccionado", seleccionado);
-            }
-            else
-            {
-                Session.Add("Seleccionado", seleccionado);
-            }*/
             Session.Add("Seleccionado", seleccionado);
             Response.Redirect("Detalles.aspx",false);
         }
@@ -55,18 +45,8 @@ namespace TPWeb_Carrrito
             Articulo agregado = new Articulo();
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.Id == id);
-            /*if(artAgregados == null)
-            {
-                //artAgregados = new List<Articulo>();
-            }
-            if (Session["artAgregados"] != null) {
-                artAgregados = (List<Articulo>)Session["artAgregados"];
-                Session.Remove("artAgregados");
-            }*/
             List<Articulo> artAgregados = (List<Articulo>)Session["artAgregados"];
             artAgregados.Add(agregado);
-            //artAgregados.Add(agregado);
-            //Session.Add("artAgregados", artAgregados);
         }
 
         protected void btncarrito_Click(object sender, ImageClickEventArgs e)
