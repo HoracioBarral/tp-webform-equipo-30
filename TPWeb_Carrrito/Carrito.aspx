@@ -16,9 +16,12 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% if (((List<dominio.Articulo>)(Session["carrito"])).Count==0 ) { %>
-            <asp:Image ID="imgMostrar" runat="server" ImageUrl="Imagen/carritoVacio.png" AlternateText="Carrito Vacio" />
-            <% } else { %>
+        <% if (((List<dominio.Articulo>)(Session["carrito"])).Count == 0)
+            { %>
+        <asp:Image ID="imgMostrar" runat="server" ImageUrl="Imagen/carritoVacio.png" AlternateText="Carrito Vacio" />
+        <% }
+        else
+        { %>
         <asp:Repeater ID="repeaterCarrito" runat="server">
             <ItemTemplate>
                 <div class="col">
@@ -33,6 +36,12 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-         <% } %>
+        <% } %>
+    </div>
+    <div class="col-6">
+        <div class="form-floating">
+            <asp:Label ID="lblTotal" runat="server" CssClass="display-6">Total: $</asp:Label>
+            <asp:Label ID="lblImporte" runat="server" CssClass="display-6"></asp:Label>
+        </div>
     </div>
 </asp:Content>
