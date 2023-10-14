@@ -16,6 +16,7 @@ namespace TPWeb_Carrrito
         List<Articulo> listadoArticulos;
         protected void Page_Load(object sender, EventArgs e)
         {
+            cantidadProductos();
             if (!IsPostBack)
              {
                 ArticuloNegocio articulos = new ArticuloNegocio();
@@ -47,11 +48,22 @@ namespace TPWeb_Carrrito
             listadoArticulos = (List<Articulo>)Session["listadoArticulos"];
             agregado = listadoArticulos.Find(x => x.Id == id);
             ((List<Articulo>)Session["artAgregados"]).Add(agregado);
+            cantidadProductos();
         }
 
         protected void btncarrito_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Carrito.aspx",false);
+        }
+
+        private void cantidadProductos()
+        {
+            int cant=0;
+            if (Session["artAgregados"] != null)
+            {
+                cant = ((List<Articulo>)Session["artAgregados"]).Count;
+            }
+            TxtBoxCantidad.Text = cant.ToString();
         }
     }
 }
